@@ -21,6 +21,17 @@ return [
                 '<a:(login|logout|request-password-reset)>' => 'site<a>',
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'ML*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'fileMap' => [
+                        'ML/Base' => 'ML.php',
+                    ],
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'news' => [
