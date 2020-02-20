@@ -1,5 +1,6 @@
 <?php
 return [
+    'language' => 'ru_RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -27,7 +28,7 @@ return [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages',
                     'fileMap' => [
-                        'ML/Base' => 'ML.php',
+                        'ML' => 'ML.php',
                     ],
                 ],
             ],

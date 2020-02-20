@@ -47,12 +47,21 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'text' => 'Text',
-            'time' => 'Time',
-            'author' => 'Author',
-            'image' => 'Image',
-            'title' => 'Title',
-            'short' => 'Short',
+            'text' => Yii::t('ML', 'Text'),
+            'time' => Yii::t('ML', 'Time'),
+            'author' => Yii::t('ML', 'Author'),
+            'image' => Yii::t('ML', 'Image'),
+            'title' => Yii::t('ML', 'Title'),
+            'short' => Yii::t('ML','Short'),
         ];
     }
+    public function beforeSave($insert)
+{
+    if (parent::beforeSave($insert)) {
+ 
+        $this->time = date('Y-m-d H:i:s', strtotime($this->time));
+        return true;
+    }
+    return false;
+}
 }

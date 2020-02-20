@@ -26,17 +26,11 @@ use kartik\datetime\DateTimePicker;
     'value' => '23-Feb-1982 10:10',
     'pluginOptions' => [
         'autoclose'=>true,
-        'format' => 'dd-M-yyyy H:i'
+        'format' => 'dd-M-yyyy hh:ii'
     ]
 ]);?>
 
     <?= $form->field($model, 'image')->fileinput() ?>
-
-
-
-
-
-
 
 
     <?= $form->field($model, 'short')->textInput(['maxlength' => true]) ?>
