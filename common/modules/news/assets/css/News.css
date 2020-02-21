@@ -1,0 +1,7 @@
+.show-img-class{
+    background-color: goldenrod;
+    color: black;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
