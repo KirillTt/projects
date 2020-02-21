@@ -3,26 +3,25 @@
 namespace common\modules\news\controllers;
 
 use Yii;
-use common\modules\news\models\Tags;
-use common\modules\news\models\searches\TagsSearch;
+use common\modules\news\models\TagsLink;
+use common\modules\news\models\searches\TagsLinkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use common\modules\roles\models\ACLRole;
-use yii\helpers\ArrayHelper;
 
 /**
- * TagsController implements the CRUD actions for Tags model.
+ * TagsLinkController implements the CRUD actions for TagsLink model.
  */
-class TagsController extends Controller
+class TagsLinkController extends Controller
 {
 
     /**
-     * Lists all Tags models.
+     * Lists all TagsLink models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TagsSearch();
+        $searchModel = new TagsLinkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -32,7 +31,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Displays a single Tags model.
+     * Displays a single TagsLink model.
      * @param integer $id
      * @return mixed
      */
@@ -44,13 +43,13 @@ class TagsController extends Controller
     }
 
     /**
-     * Creates a new Tags model.
+     * Creates a new TagsLink model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Tags();
+        $model = new TagsLink();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -62,7 +61,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Updates an existing Tags model.
+     * Updates an existing TagsLink model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -81,7 +80,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Deletes an existing Tags model.
+     * Deletes an existing TagsLink model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -94,40 +93,18 @@ class TagsController extends Controller
     }
 
     /**
-     * Finds the Tags model based on its primary key value.
+     * Finds the TagsLink model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tags the loaded model
+     * @return TagsLink the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tags::findOne($id)) !== null) {
+        if (($model = TagsLink::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-    public function actionCreatetags($name)
-    {
-    $model = new Tags;
-    $model->title = $name;
-    return $model->save();
-    }
-
-    public function actionGettags()
-    {
-        $tags_list = ArrayHelper::map(tags::find()->all(), 'id', 'title');
-        $DOM = '';
-        $last_key = end(array_keys($tags_list));
-        foreach($tags_list as $id => $name){
-            if($last_key == $id){
-                $selected = 'selected';
-            }else{
-                $selected = '';
-            }
-            $DOM.= "<option value=\"$id\" $selected>$name</option>\r\n";
-        }
-        return $DOM;
     }
 }
